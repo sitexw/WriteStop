@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>jQuery WriteStop 1.0 - Exemple</title>
+	<style>
+	body, a {
+		color: #333333;
+		font-family: Arial;
+	}
+	table {
+		width: 700px;
+	}
+	input, textarea {
+		border: 1px solid #000000;
+		border-radius: 3px;
+	}
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="./jquery.writestop-1.0.min.js"></script>
+	<script>
+	
+	function firstname_800ms() {
+		$(this).css('backgroundColor', 'grey');
+		$('#event_firstname').append('800ms event on firstname !<br>');
+	}
+	function firstname_300ms() {
+		$(this).css('backgroundColor', 'deepskyblue');
+		$('#event_firstname').append('300ms event on firstname !<br>');
+	}
+	
+	$(document).ready(function() {
+		
+		$('#firstname')
+		.on('writestop', firstname_800ms)//Default: 800ms
+		.on('writestop', 300, firstname_300ms)
+		.on('writestop', 1800, function() {
+			$(this).css('backgroundColor', 'red');
+			$('#event_firstname').append('1800ms event on firstname !<br>');
+		});
+		
+		$('#lastname')
+		.bind('writestop', 300, function() {
+			$(this).css('backgroundColor', 'yellow');
+			$('#event_lastname').append('300ms event on lastname !<br>');
+		});
+		
+		$('#message')
+		.bind('writestop', 2000, function() {
+			$(this).css('backgroundColor', 'green');
+			$('#event_message').append('2s event on message !<br>');
+		})
+		.on('writestop', 500, function() {
+			$(this).css('backgroundColor', 'deeppink');
+			$('#event_message').append('500ms event on message !<br>');
+		});
+		
+	});
+	</script>
+</head>
+<body>
+	<h1>Hello jQuery WriteStop !</h1>
+	<hr>
+	<a href="http://github.com/sitexw/WriteStop" target="_blank">WriteStop on GitHub</a> | <a href="http://www.sitexw.fr/writestop" target="_blank">WriteStop online</a>
+	<hr>
+	<table>
+		<tr>
+			<td>
+				<button onclick="$('#firstname').unbind('writestop', firstname_800ms);">UnBind 800ms</button><br>
+				<button onclick="$('#firstname').unbind('writestop', firstname_300ms);">UnBind 300ms</button><br>
+				<button onclick="$('#firstname').off('writestop');">UnBind All</button><br>
+			</td>
+			<td>
+				<button onclick="$('#lastname').unbind('writestop');">UnBind All</button><br>
+			</td>
+			<td>
+				<button onclick="$('#message').bind('writestop', function() { alert('Bonjour !'); });">Bind alert('Bonjour !'); 800ms</button><br>
+			</td>
+		</tr>
+		<tr>
+			<td><input type="text" name="firstname" id="firstname"></td>
+			<td><input type="text" name="lastname" id="lastname"></td>
+			<td><textarea name="message" id="message"></textarea></td>
+		</tr>
+		<tr>
+			<td id="event_firstname"></td>
+			<td id="event_lastname"></td>
+			<td id="event_message"></td>
+		</tr>
+	</table>
+</body>
+</html>

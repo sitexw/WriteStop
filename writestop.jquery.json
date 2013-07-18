@@ -1,0 +1,30 @@
+{
+	"name": "writestop",
+	"title": "jQuery WriteStop",
+	"description": "jQuery plugin to detecting the end of an input field.",
+	"keywords": [
+		"writestop",
+		"write",
+		"stop",
+		"input",
+		"finished"
+	],
+	"version": "1.0.0",
+	"author": {
+		"name": "SiteXw (Valentin)",
+		"url": "http://www.sitexw.fr/"
+	},
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "http://github.com/sitexw/FuckAdBlock/blob/master/MIT-LICENSE.txt"
+        }
+    ],
+	"homepage": "http://github.com/sitexw/WriteStop",
+	"docs": "http://github.com/sitexw/WriteStop/wiki",
+	"demo": "http://www.sitexw.fr/writestop",
+	"download": "http://github.com/sitexw/WriteStop",
+	"dependencies": {
+		"jquery": ">=1.7"
+	}
+}
